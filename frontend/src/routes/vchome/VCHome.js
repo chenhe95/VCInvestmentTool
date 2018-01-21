@@ -28,7 +28,8 @@ class VCHome extends React.Component {
   state = {
     grid: true,
     loading: true,
-    companies: []
+    companies: [],
+    search: ''
   };
 
   componentDidMount() {
@@ -36,6 +37,8 @@ class VCHome extends React.Component {
       .then(x => x.json())
       .then(json => this.setState({companies: json, loading: false}))
   }
+
+  onSearchChange = (event) => this.setState({search: event.target.value});
 
   render() {
     let content;
@@ -46,9 +49,17 @@ class VCHome extends React.Component {
         </div>
       );
     } else {
+      const searchWords = this.state.search.toLowerCase().split(" ");
       content = (
         <Grid centered columns={'equal'}>
-          { this.state.companies.map(company => <Card {...company}/>) }
+          {
+            this.state.companies
+              .filter(company => {
+                this.state.search.trim().length <= 0 ||
+                searchWords.map(v => v.toLowerCase()).some(word => company.tags.includes(word))
+              })
+              .map(company => <Card {...company}/>)
+          }
         </Grid>
       )
     }
@@ -57,6 +68,7 @@ class VCHome extends React.Component {
       <div>
         <div className={s.options}>
           <Input
+            onChange={this.onSearchChange}
             className={s.search}
             icon={{name: 'search', circular: true, link: true}}
             placeholder='Search...'
@@ -71,7 +83,7 @@ class VCHome extends React.Component {
           </Button.Group>
         </div>
         {content}
-        <Pagination className={s.paginator} defaultActivePage={1} totalPages={3}/>
+        <Pagination disabled className={s.paginator} defaultActivePage={1} totalPages={3}/>
       </div>
     );
   }
