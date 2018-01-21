@@ -30,7 +30,7 @@ class Home extends React.Component {
         <h1 className={s.header}>WHICH ARE YOU?</h1>
         <div>
           <Button onClick={() => window.location.pathname = '/form'} inverted={'true'} size={'massive'} color={'violet'}>COMPANY</Button>
-          <Button onClick={() => window.location.pathname = '/vchome'} inverted={'true'} size={'massive'} color={'violet'}>INVESTOR</Button>
+          <Button onClick={() => window.location.pathname = '/vc'} inverted={'true'} size={'massive'} color={'violet'}>INVESTOR</Button>
         </div>
       </div>
     );
