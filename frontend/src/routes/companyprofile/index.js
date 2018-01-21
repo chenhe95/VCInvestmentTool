@@ -11,7 +11,7 @@ import React from 'react';
 import CompanyProfile from './CompanyProfile';
 import Layout from '../../components/Layout';
 
-async function action({ fetch }) {
+async function action({ params }) {
   /*const resp = await fetch('/graphql', {
     body: JSON.stringify({
       query: '{news{title,link,content}}',
@@ -25,7 +25,7 @@ async function action({ fetch }) {
     title: 'React Starter Kit',
     component: (
       <Layout>
-        <CompanyProfile/>
+        <CompanyProfile {...params}/>
       </Layout>
     ),
   };

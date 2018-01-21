@@ -15,22 +15,7 @@ import s from './Card.css';
 
 class Card extends React.Component {
 
-  /**
-   * {
-  "name": "asdsadsda",
-  "founder": "aaaa",
-  "revenue": "sdasad",
-  "employees": "sdsds",
-  "tags": [
-    "money",
-    "people"
-  ],
-  "uniqueness": 0.35,
-  "logo": "zxcxzcxczzxz ds",
-  "id": 4349647296,
-  "responses": []
-}
-   */
+
   static propTypes = {
     name: PropTypes.string.isRequired,
     founder: PropTypes.string.isRequired,
@@ -66,7 +51,7 @@ class Card extends React.Component {
           </SemanticCard.Description>
         </SemanticCard.Content>
         <SemanticCard.Content extra>
-          {this.props.tags.map(tag => (
+          {this.props.tags.slice(0, 2).map(tag => (
             <Label>
               {tag}
             </Label>
