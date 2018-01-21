@@ -1,0 +1,10 @@
+tensorflow
+numpy
+utils
+Flask
+pymongo
+pandas
+six
+nltk
+plotly
+watson-developer-cloud

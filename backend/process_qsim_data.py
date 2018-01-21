@@ -15,7 +15,6 @@ import tensorflow as tf
 from collections import defaultdict
 import random
 import numpy as np
-import collections
 import math
 import utils
 import re
@@ -88,6 +87,7 @@ q2 = data_pd["question2"].tolist()
 data_1 = []
 data_2 = []
 
+
 def process_sent(sent):
     if not isinstance(sent, str) or not sent:
         return np.array([0.0] * 100)
@@ -99,6 +99,7 @@ def process_sent(sent):
     if len(mat) == 0:
         return np.array([0.0] * 100)
     return mat.mean(axis=1, keepdims=True)
+
 
 # data_1 = [process_sent(s) for s in q1]
 # data_2 = [process_sent(s) for s in q2]
@@ -155,6 +156,3 @@ def sim(s1, s2):
     s1_mat = process_sent(s1)
     s2_mat = process_sent(s2)
     return cosine_similarity(s1_mat, s2_mat)
-
-
-
