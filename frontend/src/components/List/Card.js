@@ -43,7 +43,7 @@ class Card extends React.Component {
           </SemanticCard.Header>
           <SemanticCard.Meta>
         <span className='date'>
-          It is {Math.floor(this.props.uniqueness) * 100}% unique.
+          It is {Math.floor(this.props.uniqueness * 100)}% unique.
         </span>
           </SemanticCard.Meta>
           <SemanticCard.Description>
