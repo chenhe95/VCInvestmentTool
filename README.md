@@ -1,8 +1,17 @@
-<img src="loopboxlogo.png" width="35%"/>
+<p align="center">
+  <img src="loopboxlogo.png" width="35%"/>
+</p>
 LoopBox is an intelligent form that startups would fill instead of bombarding VCs with unanswered emails.
 
 ### Problem
 Two of us are entrepreneurs and we know that without a solid intro, our chances of getting a meeting with a top VC are very little. As we are versed in the topic, we learned that a lot of VCs are bombarded with email and they have very little time to be able to meet with all and spend time (Fred Wilson archived 1625 unread emails on new year's eve). As a young entrepreneur getting started, your chances of being introduced to a top tier VC are very little, and that means that VCs might miss out the next unicorn.
+
+### Screenshots
+<p align="center">
+  <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/589/667/datas/gallery.jpg" width="30%" hspace="10"/>
+  <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/589/665/datas/gallery.jpg" width="30%" hspace="10"/>
+  <img src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/000/589/663/datas/gallery.jpg" width="30%" hspace="10"/>
+</p>
 
 ### Opportunity
 The barriers to entry keep getting lower and lower. The ability for someone to create almost anything they want has become democratized. With the rise of funding demand, VCs have to develop a new way that allows them to filter and analyze companies. The opportunity lies in evaluating startups based on their responses and framework, giving a chance for the largest number of startups to be heard. From the VC side, the opportunity lies in cleaning out their email and in increasing the number of startups looked at which minimizes the risk of letting the next unicorn slip under their shoulder.
