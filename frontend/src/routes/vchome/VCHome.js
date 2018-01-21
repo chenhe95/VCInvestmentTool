@@ -11,7 +11,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './VCHome.css';
-import {Grid, Input, Button, Icon, Pagination, Sticky} from 'semantic-ui-react';
+import {Grid, Input, Button, Icon, Pagination, Sticky, Loader} from 'semantic-ui-react';
 import Card from '../../components/List/Card';
 
 class VCHome extends React.Component {
@@ -26,13 +26,35 @@ class VCHome extends React.Component {
   };
 
   state = {
-    grid: true
+    grid: true,
+    loading: true,
+    companies: []
   };
 
+  componentDidMount() {
+    fetch('http://localhost:5000/company_all_digest')
+      .then(x => x.json())
+      .then(json => this.setState({companies: json, loading: false}))
+  }
+
   render() {
+    let content;
+    if (this.state.loading) {
+      content = (
+        <div style={{width: '100%', height: '60vh'}}>
+          <Loader active inline='centered'/>
+        </div>
+      );
+    } else {
+      content = (
+        <Grid centered columns={'equal'}>
+          { this.state.companies.map(company => <Card {...company}/>) }
+        </Grid>
+      )
+    }
+
     return (
       <div>
-        <Sticky/>
         <div className={s.options}>
           <Input
             className={s.search}
@@ -48,20 +70,8 @@ class VCHome extends React.Component {
             </Button>
           </Button.Group>
         </div>
-        <Sticky/>
-        <Grid centered columns={'equal'}>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-        </Grid>
-        <Pagination className={s.paginator} defaultActivePage={5} totalPages={10}/>
+        {content}
+        <Pagination className={s.paginator} defaultActivePage={1} totalPages={3}/>
       </div>
     );
   }

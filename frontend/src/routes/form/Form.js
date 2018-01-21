@@ -153,7 +153,7 @@ class Form extends React.Component {
     fetch('http://localhost:5000/startup_registration', {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(this.state.responses),

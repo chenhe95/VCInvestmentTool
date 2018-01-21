@@ -9,36 +9,68 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Card as SemanticCard, Image, Icon} from 'semantic-ui-react';
+import {Card as SemanticCard, Image, Icon, Label} from 'semantic-ui-react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Card.css';
 
 class Card extends React.Component {
 
+  /**
+   * {
+  "name": "asdsadsda",
+  "founder": "aaaa",
+  "revenue": "sdasad",
+  "employees": "sdsds",
+  "tags": [
+    "money",
+    "people"
+  ],
+  "uniqueness": 0.35,
+  "logo": "zxcxzcxczzxz ds",
+  "id": 4349647296,
+  "responses": []
+}
+   */
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    founder: PropTypes.string.isRequired,
+    revenue: PropTypes.string.isRequired,
+    employees: PropTypes.string.isRequired,
+    model: PropTypes.string.isRequired,
+    tagline: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    uniqueness: PropTypes.number.isRequired,
+    logo: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    responses: PropTypes.arrayOf(PropTypes.string).isRequired,
+  };
+
+
   render() {
     return (
       <SemanticCard className={s.card}>
         <div className={s.imageWrapper}>
-          <Image src={'https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png'}/>
+          <Image src={this.props.logo.trim()}/>
         </div>
         <SemanticCard.Content>
           <SemanticCard.Header>
-            Matthew
+            {this.props.name}
           </SemanticCard.Header>
           <SemanticCard.Meta>
         <span className='date'>
-          Joined in 2015
+          It is {Math.floor(this.props.uniqueness) * 100}% unique.
         </span>
           </SemanticCard.Meta>
           <SemanticCard.Description>
-            Matthew is a musician living in Nashville.
+            {this.props.model}
           </SemanticCard.Description>
         </SemanticCard.Content>
         <SemanticCard.Content extra>
-          <a>
-            <Icon name='user'/>
-            21 Friends
-          </a>
+          {this.props.tags.map(tag => (
+            <Label>
+              {tag}
+            </Label>
+          ))}
         </SemanticCard.Content>
       </SemanticCard>
     );
