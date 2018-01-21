@@ -1,0 +1,88 @@
+/**
+ * React Starter Kit (https://www.reactstarterkit.com/)
+ *
+ * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+@import '../../components/variables.css';
+
+body {
+  background-color: #121212;
+}
+
+.container {
+  display: flex !important;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  z-index: -1;
+}
+
+h1 {
+  font-size: 5em !important;
+}
+
+textarea {
+  padding: 15px;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid rgba(34,36,38,.15);
+  width: 100%;
+
+  &::-webkit-input-placeholder {
+     opacity: 0.5;
+   }
+}
+
+.questioner {
+  display: flex;
+  min-height: 100vh;
+}
+
+.question {
+    color: white;
+    text-align: center;
+    background-color: #a291fb7d;
+    padding: 20px;
+}
+
+.content {
+  flex: 1 1 auto;
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+
+  textarea {
+    width: calc(100% - 200px);
+    height: 50vh;
+    font-size: 80px;
+    margin: 100px;
+    border-color: #a291fb;
+    border-width: 4px;
+    background-color: #121212;
+    color: white;
+  }
+}
+
+.footer {
+  & > div {
+    float: right;
+    margin-right: 1em;
+    margin-top: -2.25em;
+  }
+}
