@@ -48,7 +48,7 @@ class Card extends React.Component {
 
   render() {
     return (
-      <SemanticCard className={s.card}>
+      <SemanticCard href={`/vc/company/${id}`} className={s.card}>
         <div className={s.imageWrapper}>
           <Image src={this.props.logo.trim()}/>
         </div>

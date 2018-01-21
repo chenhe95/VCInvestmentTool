@@ -24,7 +24,7 @@ const routes = {
       load: () => import(/* webpackChunkName: 'home' */ './vchome'),
     },
     {
-      path: '/vc/company',
+      path: '/vc/company/:id',
       load: () => import(/* webpackChunkName: 'home' */ './companyprofile'),
     },
     {
