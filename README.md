@@ -1,10 +1,3 @@
----
-output:
-  html_document:
-    keep_md: true
-  md_document:
-    variant: markdown_github
----
 # LoopBox 
 LoopBox is an intelligent form that startups would fill instead of bombarding VCs with unanswered emails.
 
