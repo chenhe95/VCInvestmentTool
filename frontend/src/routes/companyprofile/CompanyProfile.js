@@ -11,7 +11,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './CompanyProfile.css';
-import {Grid, Image, Divider, Header, Label, Statistic, Message} from 'semantic-ui-react';
+import {Grid, Image, Divider, Header, Label, Statistic, Message, Loader} from 'semantic-ui-react';
 
 
 const withCommas = (x) => x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
