@@ -1,5 +1,5 @@
 # LoopBox 
-![LB](loopboxlogo.png | width=100) is an intelligent form that startups would fill instead of bombarding VCs with unanswered emails.
+<img src="loopboxlogo.png" width="13%"/> is an intelligent form that startups would fill instead of bombarding VCs with unanswered emails.
 
 ### Problem
 Two of us are entrepreneurs and we know that without a solid intro, our chances of getting a meeting with a top VC are very little. As we are versed in the topic, we learned that a lot of VCs are bombarded with email and they have very little time to be able to meet with all and spend time (Fred Wilson archived 1625 unread emails on new year's eve). As a young entrepreneur getting started, your chances of being introduced to a top tier VC are very little, and that means that VCs might miss out the next unicorn.
