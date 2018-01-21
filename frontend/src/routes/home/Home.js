@@ -27,7 +27,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className={s.root}>
-        <h1 className={s.header}>WHICH ARE YOU?</h1>
+        <h1 className={s.header}>WHO ARE YOU?</h1>
         <div>
           <Button
             onClick={() => (window.location.pathname = '/form')}
@@ -35,7 +35,7 @@ class Home extends React.Component {
             size="massive"
             color="violet"
           >
-            COMPANY
+            STARTUP
           </Button>
           <Button
             onClick={() => (window.location.pathname = '/vc')}
