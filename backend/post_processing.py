@@ -2,8 +2,6 @@ import nltk,math,six
 from nltk.tokenize import sent_tokenize
 from nltk.tokenize import word_tokenize
 from nltk.stem.porter import *
-import plotly.plotly as py
-import plotly.graph_objs as go
 from operator import itemgetter, attrgetter
 
 stemmer = PorterStemmer()
@@ -132,11 +130,11 @@ def similarity(s1,s2,idfDict):
         norm2 +=  s2d[key]**2
     if norm1*norm2 == 0:
         return 0
-    return dotProd/(math.sqrt(norm1)*math.sqrt(norm2))
+    return round(dotProd/(math.sqrt(norm1)*math.sqrt(norm2))*100)
 
 def compareAnswers(answer1, answer2):
     sim = similarity(answer1,answer2,idfDict)
-    return math.sqrt(sim*100)*10
+    return sim
 
 def uniqueness(this_answer, answers):
     sims = []
@@ -155,7 +153,7 @@ def extract(model_keywords,answer):
 # c2 = {'name':'c2','tagline':'i want a tech company'}
 
 
-revmodkeys = ['freemium','ads','pay per click', 'ppc', 'cost per impression', 'cpi','cpm','advertising','affiliate promotion paid membership sites product sales']
+revmodkeys = ['freemium','ads','pay per click','percentage commission', 'ppc','pay-to-post', 'cost per impression', 'cpi','cpm','advertising','affiliate promotion paid membership sites product sales']
 def companyOverview(company, similar_companies):
     # entries 'tagline' 'model' 'KPI' 'revenue' 'cofnum' 'employee' 'goal'
     # How unique is this company's mission?
@@ -168,23 +166,22 @@ def companyOverview(company, similar_companies):
     employeenum = str(company['employee'])
     goal = str(company['goal'])
     feature_list = [unique, model, KPI, revenue, cofounder_number, employeenum, goal]
-
     # uniquenes, revenue model keywords, KPI, revenue, cofounder numebr, employee number, goal amount of money
     res = "\n".join(feature_list)
     return res
-print(companyOverview(Reddit_answers,simcomps))
+print(companyOverview(Dropbox_answers,simcomps))
 
 def similarityList(company, companies):
     taglines = [comp['tagline'] for comp in companies]
     company_tuples = [] # tagline, similarity
     for com in companies:
         company_tuples.append((com, similarity(company['tagline'], com['tagline'], idfDict)))
-    ans = sorted(company_tuples, key=itemgetter(1), reverse=False)
+    ans = sorted(company_tuples, key=itemgetter(1), reverse=True)
     # print(ans[0])
     line_out = [(ct[0]['name'] +" "+str(round(ct[1])))for ct in ans]
-    str_out = "\n".join(line_out)
+    str_out = "\n".join(line_out[1:])
     return str_out
-print(similarityList(Reddit_answers, simcomps))
+print(similarityList(Dropbox_answers, simcomps))
 
 
 suggestedNum = 5
@@ -201,7 +198,7 @@ def rescale(v):
 def heatMapInfo(companies):
     uniqueV = []
     revenueV = [company['revenue'] for company in companies]
-    cofnumV = [company['confnum'] for company in companies]
+    cofnumV = [company['cofnum'] for company in companies]
     empV = [company['employee'] for company in companies]
     goalV = [company['goal'] for company in companies]
     companies_taglines = [x['tagline'] for x in companies]
