@@ -72,14 +72,17 @@ def startup_registration():
 		"num_founder": num_founder, "num_employees":num_employees, 
 		"num_money_planning_to_raise":num_money_planning_to_raise,
 		"keywords_tagline": k1, "entity_tagline": e1,
-		"keywords_business": k2, "entity_business": e2, "uniqueness": uniqueness});
+		"keywords_business": k2, "entity_business": e2, "uniqueness": uniqueness,
+		"cid":str(id(name))});
 
 	return request.data
 
 def company_dict_to_json(company):
+	if not company:
+		return json.loads("{}")
 	j = json.loads("{}")
 	j["name"] = company["company_name"]
-	j["id"] = id(company["company_name"])
+	j["id"] = company["cid"]
 	j["logo"] = company["company_logo"]
 	j["tags"] = []
 	try:
@@ -104,13 +107,13 @@ def company_dict_to_json(company):
 def company_dict_to_json_str(company):
 	return json.dumps(company_dict_to_json(company))
 
-@app.route('/company_digest/<string:name>')
-def company_digest(name):
+@app.route('/company_digest/<string:cid>')
+def company_digest(cid):
 	print "Company digest route"
 	client = MongoClient()
 	db = client.startups.saved
 	company = None
-	for i in db.find({"company_name": name}):
+	for i in db.find({"cid": cid}):
 		company = i
 		break
 	return company_dict_to_json_str(company)
