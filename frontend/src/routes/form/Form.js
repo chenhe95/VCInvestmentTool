@@ -12,31 +12,36 @@ import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Form.css';
 import Particles from 'react-particles-js';
-import {Sticky, Container, Header, Divider, Button, Transition} from 'semantic-ui-react';
-
+import {
+  Sticky,
+  Container,
+  Header,
+  Divider,
+  Button,
+  Transition,
+} from 'semantic-ui-react';
 
 class Form extends React.Component {
-
   particleConfig = {
     particles: {
       number: {
         value: 110,
         density: {
           enable: true,
-          value_area: 721
-        }
+          value_area: 721,
+        },
       },
       color: {
-        value: '#8f8f8f'
+        value: '#8f8f8f',
       },
       shape: {
         type: 'circle',
         polygon: {
-          nb_sides: 5
+          nb_sides: 5,
         },
       },
       opacity: {
-        value: 0.3
+        value: 0.3,
       },
       size: {
         value: 3,
@@ -47,7 +52,7 @@ class Form extends React.Component {
         distance: 150,
         color: '#696969',
         opacity: 0.4,
-        width: 1
+        width: 1,
       },
       move: {
         enable: true,
@@ -60,50 +65,50 @@ class Form extends React.Component {
         attract: {
           enable: false,
           rotateX: 600,
-          rotateY: 1200
-        }
-      }
+          rotateY: 1200,
+        },
+      },
     },
     interactivity: {
       detect_on: 'canvas',
       events: {
         onhover: {
           enable: false,
-          mode: 'repulse'
+          mode: 'repulse',
         },
         onclick: {
           enable: false,
-          mode: 'push'
+          mode: 'push',
         },
-        resize: true
+        resize: true,
       },
       modes: {
         grab: {
           distance: 400,
           line_linked: {
-            opacity: 1
-          }
+            opacity: 1,
+          },
         },
         bubble: {
           distance: 400,
           size: 40,
           duration: 2,
           opacity: 8,
-          speed: 3
+          speed: 3,
         },
         repulse: {
           distance: 73.08694910712106,
-          duration: 0.4
+          duration: 0.4,
         },
         push: {
-          particles_nb: 4
+          particles_nb: 4,
         },
         remove: {
-          particles_nb: 2
-        }
-      }
+          particles_nb: 2,
+        },
+      },
     },
-    retina_detect: true
+    retina_detect: true,
   };
 
   state = {
@@ -111,13 +116,13 @@ class Form extends React.Component {
     questions: [
       'What is your company name?',
       'What is your company logo?',
-      'What is your company\'s tagline?',
+      "What is your company's tagline?",
       'What is your business model?',
       'What are your main KPIs?',
       'How much money have you made so far?',
       'How many founders are you?',
       'How many employees do you have so far?',
-      'How much are you planning to raise?'
+      'How much are you planning to raise?',
     ],
     responses: {
       '0': '',
@@ -130,73 +135,120 @@ class Form extends React.Component {
       '7': '',
       '8': '',
       '9': '',
-    }
+    },
   };
 
-  increment = () => this.setState({phase: this.state.phase + 1});
+  increment = () => this.setState({ phase: this.state.phase + 1 });
 
-  deincrement = () => this.setState({phase: this.state.phase - 1});
+  deincrement = () => this.setState({ phase: this.state.phase - 1 });
 
-  onChange = (event) => {
+  onChange = event => {
     const { responses } = this.state;
     responses[this.getQuestion()] = event.target.value;
-    this.setState({responses: responses});
+    this.setState({ responses });
     console.log(responses);
   };
 
   onSubmit = () => {
-    fetch(`${apiURL}startup_registration`, {
+    fetch('http://localhost:5000/startup_registration', {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(this.state.responses)
+      body: JSON.stringify(this.state.responses),
     });
-    this.setState({phase: -1});
-  }
-
-  getQuestion = () => {
-    return this.state.phase - 2;
+    this.setState({ phase: -1 });
   };
+
+  getQuestion = () => this.state.phase - 2;
 
   render() {
     return (
       <div>
-        <Transition visible={this.state.phase === -1} animation={'fly right'}>
+        <Transition visible={this.state.phase === -1} animation="fly right">
           <div>
             <Container className={s.container}>
-              <Header textAlign={'center'} color={'violet'} as={'h1'} inverted>SUBMIT!</Header>
-              <p style={{'font-size': '20px', 'color': 'white'}}>Someone will hopefully be in contact with you soon after we properly analyze the data and see
-              how you match up with our fund!</p>
+              <Header textAlign="center" color="violet" as="h1" inverted>
+                SUBMIT!
+              </Header>
+              <p style={{ 'font-size': '20px', color: 'white' }}>
+                Someone will hopefully be in contact with you soon after we
+                properly analyze the data and see how you match up with our
+                fund!
+              </p>
             </Container>
           </div>
         </Transition>
-        <Transition visible={this.state.phase === 0} animation={'fly right'} onComplete={this.increment}>
+        <Transition
+          visible={this.state.phase === 0}
+          animation="fly right"
+          onComplete={this.increment}
+        >
           <div>
             <Container className={s.container}>
-              <Header textAlign={'center'} color={'violet'} as={'h1'} inverted>STARTUP APPLICATION</Header>
-              <Divider hidden clearing/>
-              <Button color={'violet'} inverted size={'massive'} onClick={this.increment}>Begin</Button>
+              <Header textAlign="center" color="violet" as="h1" inverted>
+                STARTUP APPLICATION
+              </Header>
+              <Divider hidden clearing />
+              <Button
+                color="violet"
+                inverted
+                size="massive"
+                onClick={this.increment}
+              >
+                Begin
+              </Button>
             </Container>
           </div>
         </Transition>
         <Transition visible={this.getQuestion() >= 0}>
           <div className={s.questioner}>
-            <h1 className={s.question}>{this.state.questions[this.getQuestion()]}</h1>
+            <h1 className={s.question}>
+              {this.state.questions[this.getQuestion()]}
+            </h1>
             <div className={s.content}>
-              <textarea value={this.state.responses[this.getQuestion()]} onChange={this.onChange} autoFocus/>
+              <textarea
+                value={this.state.responses[this.getQuestion()]}
+                onChange={this.onChange}
+                autoFocus
+              />
             </div>
             <div className={s.footer}>
               <div>
-                <Button disabled={this.getQuestion() <= 0} onClick={this.deincrement} size={'big'} attached='left' icon='left chevron'/>
-                <Button disabled={this.getQuestion() >= this.state.questions.length - 1} onClick={this.increment} size={'big'} attached='right' icon='right chevron'/>
-                <Button onClick={this.onSubmit} inverted disabled={this.getQuestion() !== this.state.questions.length - 1} style={{'margin-left': '15px'}} color={'violet'} size={'big'}>Submit</Button>
+                <Button
+                  disabled={this.getQuestion() <= 0}
+                  onClick={this.deincrement}
+                  size="big"
+                  attached="left"
+                  icon="left chevron"
+                />
+                <Button
+                  disabled={
+                    this.getQuestion() >= this.state.questions.length - 1
+                  }
+                  onClick={this.increment}
+                  size="big"
+                  attached="right"
+                  icon="right chevron"
+                />
+                <Button
+                  onClick={this.onSubmit}
+                  inverted
+                  disabled={
+                    this.getQuestion() !== this.state.questions.length - 1
+                  }
+                  style={{ 'margin-left': '15px' }}
+                  color="violet"
+                  size="big"
+                >
+                  Submit
+                </Button>
               </div>
             </div>
           </div>
         </Transition>
-        <Particles className={s.canvas} params={this.particleConfig}/>
+        <Particles className={s.canvas} params={this.particleConfig} />
       </div>
     );
   }
