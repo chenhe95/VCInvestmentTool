@@ -55,8 +55,10 @@ class VCHome extends React.Component {
           {
             this.state.companies
               .filter(company => {
-                this.state.search.trim().length <= 0 ||
-                searchWords.map(v => v.toLowerCase()).some(word => company.tags.includes(word))
+                let search = this.state.search.trim().length <= 0;
+                let tagWords = company.tags.map(v => v.toLowerCase());
+                let contains = searchWords.some(word => tagWords.some(tag => tag.includes(word)));
+                return search || contains;
               })
               .map(company => <Card {...company}/>)
           }
